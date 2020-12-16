@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <title>D3 Project</title>
+  <style >
+      .box{
+
+        height: 400px;
+      }
+      .container {
+        margin-top: 60px;
+        margin-bottom: 50px ;
+      }
+  </style>
+</head>
+<body>
+    <div class="section light-blue lighten-4">
+        <h1 class="center-align">D3 Project</h1>
+        
+    </div>
+
+    <div class="container grey lighten-4 box valign-wrapper">
+
+        <div id="my_dataviz" class="container">
+
+        </div>
+
+</div>
+<footer class="page-footer grey darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5>About Me</h5>
+          
+        </div>
+        <div class="col l4 offset-l2 s12 ">
+          <h5 class="white-text ">Connect</h5>
+          <ul>
+              
+            <li><a class="grey-text text-lighten-3" href="#">Facebook</a></li>
+            <li><a class="grey-text text-lighten-3" href="#">Twitter</a></li>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright grey darken-4">
+      <div class="container center-align">&copy; 2020 Sai Ganesh</div>
+    </div>
+  <script>
+
+var w = 1000;
+var h = 500;
+
+
+// firstly we create div element that we can use as
+// tooltip container, it have absolute position and
+// visibility: hidden by default
+
+var tooltip = d3.select("#my_dataviz")
+  .append("div")
+  .attr('class', 'tooltip');
+
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+  .attr("width", w)
+  .attr("height", h);
+
+// here we add some circles on the page
+
+var circles = svg.selectAll("circle")
+  .data([39,40,41])
+  .enter()
+  .append("circle")
+  .style("fill", "#FFDB33")
+    .attr("transform", function(d,i){ return "translate(" + i + 1 * 90 + ",0)"})
+    
+
+circles.attr("cx", function(d, i) {
+    return (i * 50) + 25;
+  })
+  .attr("cy", h / 2)
+  .attr("r", function(d) {
+    return d;
+  })
+    .on("click", function(d){
+
+        if(d== 39){
+            window.open(
+          "index.html",
+          '_self' 
+        );
+        
+        }
+        if(d == 40){
+            window.open(
+          "LineGraph/line.html",
+          '_self' 
+        );
+
+        }
+        if(d== 41){
+            window.open(
+          "bar.html",
+          '_self' 
+        );
+
+        }
+
+    })
+  
+  // we define "mouseover" handler, here we change tooltip
+  // visibility to "visible" and add appropriate test
+  
+  .on("mouseover", function(d) {
+    d3.select(this).transition().duration(750).style("fill", "orange");
+     if(d== 39){
+    
+     
+
+
+        return tooltip.style("visibility", "visible").text("Click to navigate to Tree Graph");
+
+     }
+     else if(d == 40){
+        return tooltip.style("visibility", "visible").text("Click to navigate to Line Graph");
+
+     }
+     else if(d == 41){
+        return tooltip.style("visibility", "visible").text("Click to navigate to Bar Graph");
+
+     }
+   
+  })
+  
+  // we move tooltip during of "mousemove"
+  
+  .on("mousemove", function() {
+    return tooltip.style("center", (event.pageY - 10) + "px")
+      .style("left", event.pageX + "px");
+  })
+  
+  // we hide our tooltip on "mouseout"
+  
+  .on("mouseout", function() {
+    d3.select(this).transition().duration(750).style("fill", "#FFDB33");
+    return tooltip.style("visibility", "hidden");
+  });
+  
+  </script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+</body>
+</html>

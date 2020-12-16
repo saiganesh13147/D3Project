@@ -1,0 +1,41 @@
+body{
+    background: #fffff0;
+  }
+  text{
+    font-family: Arial;
+    font-size: 16px;
+  }
+  .section {
+    height: 120px;
+
+  }
+  nav{
+    height: 60px;;
+  }
+  .section > div{
+
+    height : 50px;
+    background: white;
+
+  }
+  h3, .flow-text{
+    margin: 0 0 10px;
+  }
+  h4 {
+    text-align: center;
+  }
+  form{
+
+    width: 450px;
+
+  }
+  .input-field {
+
+    margin-left: 15px ;
+  }
+  .modal{
+    max-width: 500px;
+  }
+  .canvas{
+    margin-top: 40px;
+  }
