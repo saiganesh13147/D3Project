@@ -20,9 +20,11 @@
  <div class="grey darken-4 white-text text-darken-2 z-depth-5" style="position: relative">
 
   <p class="flow-text center">Various Tech Stack Tree Chart</p>
+</div>
+</div>
 <nav class="nav-wraper orange lighten-4"> 
   <div class="container">
-  <a href="home.html" class="btn-floating btn-large left-fab orange"><i class="material-icons">home</i></a>
+  <a href="../home.html" class="btn-floating btn-large left-fab orange"><i class="material-icons">home</i></a>
 
 
 	<a href="#modal" class="btn-floating btn-large right-fab pulse green modal-trigger">
@@ -30,8 +32,8 @@
 		<i class="material-icons ">add_box</i>
   </a>
 </nav>
-</div>
- </div>
+
+ 
 <div id="modal" class="modal">
 	<div class="modal-content"></div>
 	<h4 class="brown-text text-darken-4">Add New Tech</h4>
@@ -63,9 +65,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<!-- <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-analytics.js"></script> -->
+
 
 <script>
   // Your web app's Firebase configuration
@@ -80,15 +80,13 @@
     appId: "1:46104556575:web:d1d76c96b1b306cf83912a",
     measurementId: "G-EW2B60NLGZ"
   };
-  // Initialize Firebase
+ 
   firebase.initializeApp(firebaseConfig);
 
   const db = firebase.firestore();
     const settings = {timestampsInSnapshots: true};
     db.settings(settings);
 </script>
-
-  
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   <script src="https://d3js.org/d3.v5.js"></script>

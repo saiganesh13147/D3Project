@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.8/d3.min.js" type="text/JavaScript"></script>
+        <script src="https://d3js.org/d3-geo-projection.v1.min.js" type="text/JavaScript"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+        
+    </head>
+    <style>
+   
+        #play_button1 {
+    position:absolute;
+    top: 50%;
+    left: 70%;
+    background-color: #4CAF50;
+}
+     
+#viz{
+
+    width: 1000px;
+}
+    </style>
+    <body>
+        <div class="container">
+        <a href="bar.html" id="#play_button1" class="btn-floating btn-large left-fab orange"><i class="material-icons">navigate_before</i></a>
+         </div>
+         <div class="container">
+        <div id="viz">
+           
+            
+            <svg style="width: 1000px; height: 900px;"></svg>
+            
+        </div>
+    </div>
+        <script>
+            var gdpcountries = [];
+           
+
+            Promise.all([new Promise((resolve) => d3.json("world.geojson", (data) => resolve(data))), new Promise((resolve) => d3.csv("countries.csv", (data) => resolve(data)))]).then((resolve) => {
+                createMap(resolve[0], resolve[1]);
+            });
+
+            function createMap(countries, gdp) {
+              
+
+                gdp.forEach(function (gdp) {
+                    
+                    gdpcountries.push(gdp.group);
+                   
+                });
+                console.log(gdpcountries);
+                
+                const aProjection = d3.geoMercator().scale(103).translate([250, 250]);
+                //d3.geoMercator().scale(150).translate([250, 250]);
+
+                const geoPath = d3.geoPath().projection(aProjection);
+
+                d3.select("svg").selectAll("path").data(countries.features).enter().append("path").attr("d", geoPath).attr("class", "gdpcountries");
+
+                 d3.selectAll("path").style("fill", "#000000");
+
+                d3.selectAll("path.gdpcountries")
+                    .filter((d) => gdpcountries.includes(d.properties.name))
+                    .style("fill", "#42f554");
+            }
+
+           
+          
+        </script>
+    </body>
+</html>

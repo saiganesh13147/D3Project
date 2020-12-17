@@ -95,7 +95,7 @@ circles.attr("cx", function(d, i) {
 
         if(d== 39){
             window.open(
-          "index.html",
+          "TreeGraph/index.html",
           '_self' 
         );
         
@@ -109,7 +109,7 @@ circles.attr("cx", function(d, i) {
         }
         if(d== 41){
             window.open(
-          "bar.html",
+          "BarGraph/bar.html",
           '_self' 
         );
 
@@ -121,12 +121,9 @@ circles.attr("cx", function(d, i) {
   // visibility to "visible" and add appropriate test
   
   .on("mouseover", function(d) {
-    d3.select(this).transition().duration(750).style("fill", "orange");
+    d3.select(this).transition().duration(500).style("fill", "orange").attr("r", d * 1.5 );
      if(d== 39){
-    
-     
-
-
+       
         return tooltip.style("visibility", "visible").text("Click to navigate to Tree Graph");
 
      }
@@ -143,15 +140,15 @@ circles.attr("cx", function(d, i) {
   
   // we move tooltip during of "mousemove"
   
-  .on("mousemove", function() {
+  .on("mousemove", function(d) {
     return tooltip.style("center", (event.pageY - 10) + "px")
       .style("left", event.pageX + "px");
   })
   
   // we hide our tooltip on "mouseout"
   
-  .on("mouseout", function() {
-    d3.select(this).transition().duration(750).style("fill", "#FFDB33");
+  .on("mouseout", function(d) {
+    d3.select(this).transition().duration(500).style("fill", "#FFDB33").attr("r", () => d);
     return tooltip.style("visibility", "hidden");
   });
   

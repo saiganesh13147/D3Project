@@ -1,10 +1,15 @@
+
 const btns = document.querySelectorAll('button');
+
 const form = document.querySelector('form');
+
 const formAct = document.querySelector('form span');
+
 const input = document.querySelector('input');
+
 const error = document.querySelector('.error');
 
-var activity = 'cycling';
+var activity = 'Sleep';
 
 btns.forEach(btn => {
   btn.addEventListener('click', e => {
@@ -31,18 +36,30 @@ form.addEventListener('submit', e => {
   // prevent default action
   e.preventDefault()
 
-  const distance = parseInt(input.value);
-  if(distance){
-    db.collection('activities').add({
-      distance, 
+  const time = parseInt(input.value);
+
+  if(time){
+
+    db.collection('tasks').add({
+
+      time , 
+
       activity,
+
       date: new Date().toString()
+
     }).then(() => {
+
       error.textContent = '';
+
       input.value = '';
+
     }).catch(err => console.log(err));
+
   } else {
-    error.textContent = 'Please enter a valid distance'
+
+    error.textContent = 'Please enter a valid value for time in hour';
+
   }
 
 });

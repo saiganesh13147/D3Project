@@ -2,10 +2,13 @@ const modal = document.querySelector('.modal');
 
 M.Modal.init(modal);
 
-const form = document.querySelector('form');
-const name = document.querySelector('#name');
 const parent = document.querySelector('#parent');
+
 const group = document.querySelector('#group');
+
+const form = document.querySelector('form');
+
+const name = document.querySelector('#name');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
